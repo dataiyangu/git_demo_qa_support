@@ -1,0 +1,2 @@
+nettythree3.10.6测试:
+  java -javaagent:/root/cloudwise/JavaAgent_2.2.0/lib/CAgent-1.0.0.jar -jar nettythree.jar

@@ -1,0 +1,61 @@
+# 生成stub和Sketon的类:
+public class Remote2Java 
+
+
+
+ private IoFuture<Connection> doConnect(final String scheme, final SocketAddress bindAddress, final SocketAddress destination, final OptionMap connectOptions, final CallbackHandler callbackHandler, final XnioSsl xnioSsl) throws IOException {
+
+2017-8-2 16:02:29 org.jboss.ejb.client.EJBClient <clinit>
+INFO: JBoss EJB Client version 1.0.5.Final
+2017-8-2 16:02:30 org.xnio.Xnio <clinit>
+INFO: XNIO Version 3.0.3.GA
+2017-8-2 16:02:30 org.xnio.nio.NioXnio <clinit>
+INFO: XNIO NIO Implementation Version 3.0.3.GA
+2017-8-2 16:02:30 org.jboss.remoting3.EndpointImpl <clinit>
+INFO: JBoss Remoting version 3.2.3.GA
+2017-8-2 16:02:30 org.jboss.remoting3.remote.RemoteConnection handleException
+ERROR: JBREM000200: Remote connection failed: javax.security.sasl.SaslException: Authentication failed: all available authentication mechanisms failed
+2017-8-2 16:02:30 org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector setupEJBReceivers
+WARN: Could not register a EJB receiver for connection to remote://10.0.3.42:4447
+java.lang.RuntimeException: javax.security.sasl.SaslException: Authentication failed: all available authentication mechanisms failed
+	at org.jboss.ejb.client.remoting.IoFutureHelper.get(IoFutureHelper.java:91)
+	at org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector.setupEJBReceivers(ConfigBasedEJBClientContextSelector.java:121)
+	at org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector.<init>(ConfigBasedEJBClientContextSelector.java:78)
+	at org.jboss.ejb.client.EJBClientContext.<clinit>(EJBClientContext.java:77)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:120)
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:104)
+	at com.sun.proxy.$Proxy0.sayHello(Unknown Source)
+	at com.ilucky.ejb.Client.main(Client.java:12)
+Caused by: javax.security.sasl.SaslException: Authentication failed: all available authentication mechanisms failed
+	at org.jboss.remoting3.remote.ClientConnectionOpenListener$Capabilities.handleEvent(ClientConnectionOpenListener.java:315)
+	at org.jboss.remoting3.remote.ClientConnectionOpenListener$Capabilities.handleEvent(ClientConnectionOpenListener.java:214)
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:72)
+	at org.xnio.channels.TranslatingSuspendableChannel.handleReadable(TranslatingSuspendableChannel.java:189)
+	at org.xnio.channels.TranslatingSuspendableChannel$1.handleEvent(TranslatingSuspendableChannel.java:103)
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:72)
+	at org.xnio.nio.NioHandle.run(NioHandle.java:90)
+	at org.xnio.nio.WorkerThread.run(WorkerThread.java:184)
+	at ...asynchronous invocation...(Unknown Source)
+	at org.jboss.remoting3.EndpointImpl.doConnect(EndpointImpl.java:270)
+	at org.jboss.remoting3.EndpointImpl.doConnect(EndpointImpl.java:251)
+	at org.jboss.remoting3.EndpointImpl.connect(EndpointImpl.java:349)
+	at org.jboss.remoting3.EndpointImpl.connect(EndpointImpl.java:333)
+	at org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector.setupEJBReceivers(ConfigBasedEJBClientContextSelector.java:119)
+	... 6 more
+2017-8-2 16:02:30 org.jboss.remoting3.remote.RemoteConnection handleException
+ERROR: JBREM000200: Remote connection failed: javax.security.sasl.SaslException: Authentication failed: all available authentication mechanisms failed
+Exception in thread "main" java.lang.IllegalStateException: No EJB receiver available for handling [appName:,modulename:ilucky-ejb-3.0,distinctname:] combination for invocation context org.jboss.ejb.client.EJBClientInvocationContext@4f34b07e
+	at org.jboss.ejb.client.EJBClientContext.requireEJBReceiver(EJBClientContext.java:584)
+	at org.jboss.ejb.client.ReceiverInterceptor.handleInvocation(ReceiverInterceptor.java:119)
+	at org.jboss.ejb.client.EJBClientInvocationContext.sendRequest(EJBClientInvocationContext.java:181)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:136)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:121)
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:104)
+	at com.sun.proxy.$Proxy0.sayHello(Unknown Source)
+	at com.ilucky.ejb.Client.main(Client.java:12)
+	
+	参考:
+	https://stackoverflow.com/questions/19093244/remote-connection-of-jboss-7-server-fails-with-proxy-exception
+
+    加载配置文件:
+    EJBClientPropertiesLoader

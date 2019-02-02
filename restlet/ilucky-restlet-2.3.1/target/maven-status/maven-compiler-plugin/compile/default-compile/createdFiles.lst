@@ -1,0 +1,7 @@
+com\ilucky\restlet\resource\ExceptionResource.class
+com\ilucky\restlet\RestletTest2.class
+com\ilucky\restlet\RestletServer2.class
+com\ilucky\restlet\resource\DbResource.class
+com\ilucky\restlet\RestletServer.class
+com\ilucky\restlet\resource\HelloWorldResource.class
+com\ilucky\restlet\resource\MovieResource.class

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!--注意:
+    1. 这里的 namespace 要指定到 mapperInterface 的 接口类的路径 
+    2. 这里的 statement 的id 要和 接口类中的 方法名一样
+ -->
+ <mapper namespace="com.mybatis.classes.IClassesDAO">
+ 	
+ 	<!-- 设置 缓存共享 -->
+ 	<cache-ref namespace="com.mybatis.student"/>
+ 	
+ 	<resultMap type="Classes" id="classesResultMap">
+ 		<id column="CID" property="cid"/>
+ 		<result column="CNAME" property="cname"/>
+ 		<result column="TEACHER" property="teacher"/>
+ 		<result column="CREATEDATE" property="createDate"/>
+ 	</resultMap>
+ 	
+ 	<!-- columnPrefix:别名前缀 -->
+ 	<resultMap type="Classes" id="classesAndStudentListResultMap">
+ 		<id column="CID" property="cid"/>
+ 		<result column="CNAME" property="cname"/>
+ 		<result column="TEACHER" property="teacher"/>
+ 		<result column="CREATEDATE" property="createDate"/>
+ 		<collection property="students" ofType="Student" resultMap="com.mybatis.student.studentResultMap" columnPrefix="stu_"/>
+ 	</resultMap>
+ 	
+ 	<!-- 下面采用了 别名 stu_ 来区分列名 -->
+ 	<select id="selectClassAndStudentListById" resultMap="classesAndStudentListResultMap" parameterType="int">
+ 		select 
+	 		c.cid,
+	 		c.cname,
+	 		c.teacher,
+	 		c.createdate,
+	 		s.sid stu_sid,
+	 		s.sname stu_sname,
+	 		s.score stu_score
+ 		from student s right join classes c on s.cid=c.cid where c.cid=#{cid}
+ 	</select>
+ 	
+ 	<delete id="delClassesBycid" parameterType="int">
+ 		delete from classes where cid=#{cid}
+ 	</delete>
+ 	
+ </mapper>

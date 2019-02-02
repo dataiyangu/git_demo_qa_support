@@ -1,0 +1,15 @@
+切换到ilucky-local分支的smartAgent\javaagent\jboss_ejb目录下，获取最新版本的javaagent，上传到admin，进行测试。
+测试过程:
+1. 将ejb client服务ilucky-ejb-3.0-client-0.0.1-SNAPSHOT.war部署在tomcat服务器下, 启动。
+注意: 需要修改ejb server服务所在及其地址，通过修改jboss-ejb-client.properties文件的如下属性remote.connection.default.host=10.0.3.42
+2. 将ejb server服务ilucky-ejb-3.0-0.0.1-SNAPSHOT.jar部署到jboss服务器目录/opt/jboss/jboss-as-7.1.0.Final/standalone/deployments下，启动jboss。
+注意: 两个服务需要部署在一个服务器上。
+如果不在一个服务器上，需要屏蔽jboss的权限leo.li
+3. 访问tomcat下面的服务:http://10.0.3.42:8090/ilucky-ejb-3.0-client-0.0.1-SNAPSHOT/test
+查看portal。
+适配版本: jboss7.10 & ejb3.0，另外: 目前没有实现端到端！
+
+Java支持JBoss & EJB 3.x 提测
+https://jira.cloudwise.com/browse/TSB-7477
+
+

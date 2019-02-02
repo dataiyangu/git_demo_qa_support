@@ -1,0 +1,23 @@
+
+http://archive.apache.org/dist/thrift/0.8.0/
+
+测试如下:
+http
+http://localhost:8080/ilucky-thrift-0.8.0-client/client  普通
+http://localhost:8080/ilucky-thrift-0.8.0-client/client2 访问数据库
+
+http://localhost:8080/ilucky-thrift-0.9.0-client/client  普通
+http://localhost:8080/ilucky-thrift-0.9.0-client/client2 访问数据库
+
+http://localhost:8080/ilucky-thrift-0.10.0-client/client  普通
+http://localhost:8080/ilucky-thrift-0.10.0-client/client2 访问数据库
+
+socket:
+http://localhost:8080/ilucky-thrift-0.8.0-server/socket 启动socket server
+http://localhost:8080/ilucky-thrift-0.8.0-client/client3 访问socket server
+
+http://localhost:8080/ilucky-thrift-0.9.0-server/socket 启动socket server
+http://localhost:8080/ilucky-thrift-0.9.0-client/client3 访问socket server
+
+http://localhost:8080/ilucky-thrift-0.10.0-server/socket 启动socket server
+http://localhost:8080/ilucky-thrift-0.10.0-client/client3 访问socket server

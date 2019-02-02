@@ -1,0 +1,5 @@
+(function aadd(){
+   alert("11");
+}
+
+)

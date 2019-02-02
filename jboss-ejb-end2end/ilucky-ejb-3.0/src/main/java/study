@@ -1,0 +1,58 @@
+14:34:00,901 ERROR [org.jboss.ejb3.invocation] (EJB default - 4) JBAS014134: EJB Invocation failed on component HelloWorldBean for method public abstract java.lang.String com.ilucky.ejb.service.HelloWorld.sayHello(): javax.ejb.EJBException: java.lang.ArithmeticException: / by zero
+	at org.jboss.as.ejb3.tx.CMTTxInterceptor.handleExceptionInOurTx(CMTTxInterceptor.java:166) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.tx.CMTTxInterceptor.invokeInOurTx(CMTTxInterceptor.java:230) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.tx.CMTTxInterceptor.required(CMTTxInterceptor.java:304) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.tx.CMTTxInterceptor.processInvocation(CMTTxInterceptor.java:190) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ejb3.remote.EJBRemoteTransactionPropogatingInterceptor.processInvocation(EJBRemoteTransactionPropogatingInterceptor.java:80) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ejb3.component.interceptors.CurrentInvocationContextInterceptor.processInvocation(CurrentInvocationContextInterceptor.java:41) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ejb3.component.interceptors.LoggingInterceptor.processInvocation(LoggingInterceptor.java:59) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ee.component.NamespaceContextInterceptor.processInvocation(NamespaceContextInterceptor.java:50) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ee.component.TCCLInterceptor.processInvocation(TCCLInterceptor.java:45) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.invocation.ChainedInterceptor.processInvocation(ChainedInterceptor.java:61) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ee.component.ViewService$View.invoke(ViewService.java:165) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.remote.protocol.versionone.MethodInvocationMessageHandler.invokeMethod(MethodInvocationMessageHandler.java:300) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.remote.protocol.versionone.MethodInvocationMessageHandler.access$200(MethodInvocationMessageHandler.java:64) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.as.ejb3.remote.protocol.versionone.MethodInvocationMessageHandler$1.run(MethodInvocationMessageHandler.java:194) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471) [rt.jar:1.7.0_71]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [rt.jar:1.7.0_71]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [rt.jar:1.7.0_71]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [rt.jar:1.7.0_71]
+	at java.lang.Thread.run(Thread.java:745) [rt.jar:1.7.0_71]
+	at org.jboss.threads.JBossThread.run(JBossThread.java:122)
+Caused by: java.lang.ArithmeticException: / by zero
+	at com.ilucky.ejb.service.HelloWorldBean.sayHello(HelloWorldBean.java:21) [ilucky-ejb-3.0-0.0.1-SNAPSHOT.jar:]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) [rt.jar:1.7.0_71]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) [rt.jar:1.7.0_71]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) [rt.jar:1.7.0_71]
+	at java.lang.reflect.Method.invoke(Method.java:606) [rt.jar:1.7.0_71]
+	at org.jboss.as.ee.component.ManagedReferenceMethodInterceptorFactory$ManagedReferenceMethodInterceptor.processInvocation(ManagedReferenceMethodInterceptorFactory.java:72) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.invocation.WeavedInterceptor.processInvocation(WeavedInterceptor.java:53) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ee.component.interceptors.UserInterceptorFactory$1.processInvocation(UserInterceptorFactory.java:36) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.jpa.interceptor.SBInvocationInterceptor.processInvocation(SBInvocationInterceptor.java:47)
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.invocation.InitialInterceptor.processInvocation(InitialInterceptor.java:21) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.invocation.ChainedInterceptor.processInvocation(ChainedInterceptor.java:61) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ee.component.interceptors.ComponentDispatcherInterceptor.processInvocation(ComponentDispatcherInterceptor.java:53) [jboss-as-ee-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ejb3.component.pool.PooledInstanceInterceptor.processInvocation(PooledInstanceInterceptor.java:51) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+	at org.jboss.as.ejb3.tx.CMTTxInterceptor.invokeInOurTx(CMTTxInterceptor.java:228) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+	... 24 more
+
+14:34:01,041 INFO  [stdout] (EJB default - 5) =============EJB Client comming=================int/3=5
+
+-----------------------------------------
+at org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288) [jboss-invocation-1.1.1.Final.jar:1.1.1.Final]
+E:\software\jboss\jboss-as-7.1.0.Final\modules\org\jboss\invocation\main\jboss-invocation-1.1.1.Final.jar
+
+org.jboss.as.ejb3.remote.protocol.versionone.MethodInvocationMessageHandler.invokeMethod(MethodInvocationMessageHandler.java:300) [jboss-as-ejb3-7.1.0.Final.jar:7.1.0.Final]
+E:\software\jboss\jboss-as-7.1.0.Final\modules\org\jboss\as\ejb3\main\jboss-as-ejb3-7.1.0.Final.jar

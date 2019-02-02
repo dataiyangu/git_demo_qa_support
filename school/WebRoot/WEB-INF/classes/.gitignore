@@ -1,0 +1,14 @@
+/.struts.mex
+/applicationContext.xml
+/com/
+/extension-test.xml
+/log4j.properties
+/mybatis-config.properties
+/mybatis-config.xml
+/quartz-detail.xml
+/quartz.xml
+/redis.properties
+/snippet/
+/struts.xml
+/test/
+/timer.xml

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+ <!-- <constant name="struts.action.extension" value="do"/>  -->
+	<package name="student" namespace="/student" extends="struts-default">
+		<action name="allStudent" class="com.mybatis.action.StudentAction" method="getAllStudent">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="testStack" class="com.mybatis.action.StudentAction" method="testStackA">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="testURLConnection" class="com.mybatis.action.StudentAction" method="testURLConnection">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="testPG" class="com.mybatis.action.StudentAction" method="testPG">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="testGetConnection" class="com.mybatis.action.StudentAction" method="testGetConnection">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="testInsert" class="com.mybatis.action.StudentAction" method="testInsert">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="updateAndSelect" class="com.mybatis.action.StudentAction" method="getAllStudentAfterupdate">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="delStudentById" class="com.mybatis.action.StudentAction" method="delStudentById">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="addStudent" class="com.mybatis.action.StudentAction" method="addStudent">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="restapi" class="com.mybatis.action.StudentAction" method="restApi">
+			<result name="success">/restApi.jsp</result>
+		</action>
+		<action name="resturl" class="com.mybatis.action.StudentAction" method="resthttpconnection">
+			<result name="success">/resturl.jsp</result>
+		</action>
+		<action name="restclient" class="com.mybatis.action.StudentAction" method="restclient">
+			<result name="success">/restclient.jsp</result>
+		</action>
+		<action name="restclient31" class="com.mybatis.action.StudentAction" method="restclient31">
+			<result name="success">/restclient31.jsp</result>
+		</action>
+	</package>
+	
+	<package name="classes" namespace="/classes" extends="struts-default">
+		<action name="queryClassesById" class="com.mybatis.action.ClassesAction" method="queryClassesById">
+			<result name="success">/index1.jsp</result>
+		</action>
+		<action name="delClassesById" class="com.mybatis.action.ClassesAction" method="delClassesById">
+			<result name="success">/index1.jsp</result>
+		</action>
+		<action name="allStudent" class="com.mybatis.action.StudentAction" method="getAllStudent">
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="employ" namespace="/emp" extends="struts-default,json-default">
+		<action name="getAllEmp" class="com.toredis.action.EmployAction" method="getAllEmployee">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="delEmp" class="com.toredis.action.EmployAction" method="delEmployee">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="delEmps" class="com.toredis.action.EmployAction" method="delEmployees">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="saveEmp" class="com.toredis.action.EmployAction" method="saveEmployee">
+			<result name="success">/emp.jsp</result>
+		</action>
+		
+		<action name="scan" class="com.toredis.action.EmployAction" method="scan">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<!-- connect.sendCommand -->
+		<action name="testConn" class="com.toredis.action.EmployAction" method="testConn">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="saveComm" class="com.toredis.action.EmployAction" method="saveComm">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="quit" class="com.toredis.action.EmployAction" method="quit">
+			<result name="success">/emp.jsp</result>
+		</action>
+		
+		<action name="del" class="com.toredis.action.EmployAction" method="del">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="save" class="com.toredis.action.EmployAction" method="save">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="hmset" class="com.toredis.action.EmployAction" method="hmset">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="hmget" class="com.toredis.action.EmployAction" method="hmget">
+			<result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">dataMap</param>  
+            </result>  
+		</action>
+		<action name="ping" class="com.toredis.action.EmployAction" method="ping">
+			<result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">dataMap</param>  
+            </result>  
+		</action>
+		<action name="search" class="com.toredis.action.EmployAction" method="get">
+			<result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">dataMap</param>  
+            </result>  
+		</action>
+		<action name="redis" class="com.toredis.action.EmployAction" method="redis">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<!-- mongo -->
+		<action name="delMongo" class="com.toredis.action.EmployAction" method="delMongo">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="saveMongo" class="com.toredis.action.EmployAction" method="saveMongo">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="updateMongo" class="com.toredis.action.EmployAction" method="updateMongo">
+			<result name="success">/emp.jsp</result>
+		</action>
+		<action name="getMongo" class="com.toredis.action.EmployAction" method="getMongo">
+			<result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">dataMap</param>  
+            </result>  
+		</action>
+		
+		<!-- db2 start -->
+		<action name="queryAll" class="com.db2.test.action.DB2Action" method="queryAll">
+			<result name="success">/emp.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="amount" namespace="/" extends="struts-default">
+		<action name="queryAmountById" class="com.amount.yeepay.action.AmountAction" method="queryAmountById">
+			<result name="success">/amount.jsp</result>
+		</action>
+		<action name="delAmountById" class="com.amount.yeepay.action.AmountAction" method="delAmountById">
+			<result name="success">/amount.jsp</result>
+		</action>
+		<action name="addAmount" class="com.amount.yeepay.action.AmountAction" method="addAmount">
+			<result name="success">/amount.jsp</result>
+		</action>
+		<action name="updateAmountById" class="com.amount.yeepay.action.AmountAction" method="updateAmountById">
+			<result name="success">/amount.jsp</result>
+		</action>
+		<action name="updateAmountByName" class="com.amount.yeepay.action.AmountAction" method="updateAmountByName">
+			<result name="success">/amount.jsp</result>
+		</action>
+		<action name="amount" class="com.amount.yeepay.action.AmountAction" method="amount">
+			<result name="success">/amount.jsp</result>
+		</action>
+	</package>
+</struts>

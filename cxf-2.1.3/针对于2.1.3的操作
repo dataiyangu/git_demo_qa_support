@@ -1,0 +1,5 @@
+之前设置的文件位置同2.4.1 ，确实浏览器输入的应用名称同war包前面的名称
+ilucky*****.jar在本机运行是server端
+lesion1.war 是服务端通过tomcat运行。  网址是http://10.0.3.42:8080/leesin1/Test
+10.0.3.42换成。leesin1.war运行的本地ip  测试人员ip10.0.1.253 
+需要注意 server和client的配置ip一样的

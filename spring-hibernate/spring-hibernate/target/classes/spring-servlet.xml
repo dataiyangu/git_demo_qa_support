@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" " http://www.springframework.org/dtd/spring-beans.dtd"> 
+<beans>
+
+
+
+<!-- 
+
+	<context:annotation-config />
+
+
+	<context:component-scan
+		base-package="com.cloudwise.test" />
+
+
+	<mvc:annotation-driven />
+
+
+
+
+
+	<mvc:resources mapping="/styles/**" location="/styles/" />
+
+
+	<mvc:resources mapping="/scripts/**" location="/scripts/" />
+
+
+	<mvc:resources mapping="/images/**" location="/images/" />
+ -->
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 指定连接数据库的JDBC驱动 -->
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<!-- 指定数据库所用的url-->
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/bookshop">
+		</property>
+		<!-- 指定连接数据库的用户名 -->
+		<property name="username" value="root"></property>
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="1234"></property>
+	</bean>
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 将上面定义的数据源dataSource注入到LocalSessionFactoryBean类的sessionFactory属性  -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 设置Hibernate的相关属性 -->
+		<property name="hibernateProperties">
+			<props>
+			    <!-- 设置Hibernate的数据库方言 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="UserDAOImpl" class="com.cloudwise.test.UserDAOImpl">	</bean>
+
+
+	<bean
+
+
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+
+		<property name="prefix" value="/WEB-INF/views/" />
+
+
+		<property name="suffix" value=".jsp" />
+
+
+	</bean>
+
+	<!-- 配置Handler -->
+	<bean id="helloController" name="/helloController.action"
+		class="com.cloudwise.test.HelloController"></bean>
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="mapping">
+			<props>
+				对handler进行URL映射，url是地址queryfclients.action,后面是handler的id
+				<prop key="/helloController.action">hello</prop>
+			</props>
+		</property>
+	</bean> -->
+	<bean
+		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+				<bean id = "Yingyingying" class = "com.cloudwise.test.MyYingyingyingFactory" factory-method = "creatYingyingying"></bean>
+		
+</beans>

@@ -1,0 +1,5 @@
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://10.0.3.42:3306/test_db
+name=kevin
+password=000000
+sql=select * from map limit 0,10

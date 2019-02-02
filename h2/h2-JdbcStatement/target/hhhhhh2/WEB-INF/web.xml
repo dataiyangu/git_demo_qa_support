@@ -1,0 +1,40 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- 使用监听器启动和停止数据库 -->
+        <listener>
+          <listener-class>H2DBServerStartListener</listener-class>
+      </listener>
+     
+     <!-- 使用H2控制台的Servlet H2控制台是一个独立的应用程序，包括它自己的Web服务器，但它可以作为一个servlet作为-->
+     <servlet>
+         <servlet-name>H2Console</servlet-name>
+         <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+          <init-param>
+             <param-name>webAllowOthers</param-name>
+             <param-value></param-value>
+         </init-param>
+         <init-param>
+             <param-name>trace</param-name>
+             <param-value></param-value>
+         </init-param>
+         <load-on-startup>1</load-on-startup>
+     </servlet>
+     <servlet>
+     	<servlet-name>H2servlet</servlet-name>
+     	<servlet-class>H2servlet</servlet-class>
+     </servlet>
+     <!-- 映射H2控制台的访问路径 -->
+     <servlet-mapping>
+         <servlet-name>H2Console</servlet-name>
+         <url-pattern>/console/*</url-pattern>
+     </servlet-mapping>
+     <servlet-mapping>
+     	<servlet-name>H2servlet</servlet-name>
+         <url-pattern>/h2</url-pattern>
+     </servlet-mapping>
+  
+</web-app>

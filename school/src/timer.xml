@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd" >
+<beans>
+  <!-- 配置调度方法 -->
+  <bean id="reportTask" class="com.quartzjob.sptimer.TimerDemo"/>
+  <!-- 配置定时器任务 -->
+  <bean id="scheduledReportTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+    <property name="timerTask">
+      <ref bean="reportTask"/>
+    </property>
+     <property name="period">
+      <value>20000</value>
+    </property>
+
+  </bean>
+  <!-- 启动定时器 -->
+  <bean id="start" class="org.springframework.scheduling.timer.TimerFactoryBean">
+    <property name="scheduledTimerTasks">
+      <list>
+      <ref bean="scheduledReportTask"/>
+    </list>
+    </property>
+  </bean>
+</beans>

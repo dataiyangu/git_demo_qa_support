@@ -1,0 +1,5 @@
+注意：动态设置ip的文件，jar包和war包通过解压缩的文件可以打开，ilucky.jar的config.txt在解压文件打开根目录，leesin.war的config.txt在解压文件的根目录中的/web-inf/classse/config.txt中
+
+ilucky*****.jar在本机运行是server端
+lesion1.war 是服务端通过tomcat运行。  网址是http://10.0.3.42:8080/leesin1/Test
+10.0.3.42换成。leesin1.war运行的本地ip  测试人员ip10.0.1.253 

@@ -1,0 +1,9 @@
+已实现端到端和多个queue
+
+tomcat1:producer
+tomcat2:consumer//。 改变方案了。变成了java-jar 的方式在相应的文件夹下面
+
+将相应的文件放到自己的服务器中，我这里consumer也是通过tomcat的方式启动，效果和jar一样的。
+相应的原文件在10.0.1.224 -p36000中 ～/sunshine/1111和～/sunshine/222/下面
+
+9.0版本是客户的版本。

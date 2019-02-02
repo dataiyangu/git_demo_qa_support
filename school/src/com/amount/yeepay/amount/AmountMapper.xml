@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!--注意:
+    1. 这里的 namespace 要指定到 mapperInterface 的 接口类的路径 
+    2. 这里的 statement 的id 要和 接口类中的 方法名一样
+ -->
+ <mapper namespace="com.amount.yeepay.amount.IAmountDAO">
+ 	
+ 	<!-- 设置 缓存共享 -->
+ <!-- 	<cache-ref namespace="com.amount.yeepay.amount"/>   -->
+ 	
+ 	<resultMap type="Amount" id="amountResultMap">
+ 		<id column="CAID" property="caid"/>
+ 		<result column="NAME" property="name"/>
+ 		<result column="AMOUNT" property="amount"/>
+ 	</resultMap>
+ 	
+ 	
+ 	<!-- 下面采用了 别名 stu_ 来区分列名 -->
+ 	<select id="selectAmountByCAID" resultMap="amountResultMap" parameterType="String">
+ 		select * from custom_amount c where c.caid=#{caid}
+ 	</select>
+ 	
+ 	<select id="selectAmountByName" resultMap="amountResultMap" parameterType="String">
+ 		select * from custom_amount c where c.name=#{name}
+ 	</select>
+ 	
+ 	<delete id="delAmountByCAID" parameterType="String">
+ 		delete from custom_amount where caid=#{caid}
+ 	</delete>
+ 	
+ 	<delete id="delAmountByName" parameterType="String">
+ 		delete from custom_amount where name=#{name}
+ 	</delete>
+ 	
+ 	<insert id="addAmount" parameterType="Amount">
+ 		insert into custom_amount(caid,sname,amount)
+ 		values (#{caid},#{name},#{amount})
+ 	</insert>
+ 	
+ 	<update id="updateAmountByCAID" parameterType="Amount">
+ 		update custom_amount 
+ 		<trim prefix="SET" suffixOverrides=",">
+ 			<if test="name !=null">name=#{name},</if>
+ 			<if test="amount !=null">amount=#{amount}</if>
+ 		</trim>
+ 		where caid=#{caid}
+ 	</update>
+ 	
+ 	<update id="updateAmountByName" parameterType="Amount">
+ 		update custom_amount 
+ 		<trim prefix="SET" suffixOverrides=",">
+ 			<if test="amount !=null">amount=#{amount}</if>
+ 		</trim>
+ 		where name=#{name}
+ 	</update>
+ 	
+ 	
+ 	
+ </mapper>

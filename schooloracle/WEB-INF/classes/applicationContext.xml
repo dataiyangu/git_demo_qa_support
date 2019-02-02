@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:context="http://www.springframework.org/schema/context"   
+    xsi:schemaLocation="http://www.springframework.org/schema/context   
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd    
+     http://www.springframework.org/schema/beans   
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+     http://www.springframework.org/schema/tx   
+     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" 
+ > 
+
+<!-- 采用c3p0数据源 这个是在企业中用的比较多的一个数据源 -->  
+<!-- destroy-method="close"的作用是当数据库连接不使用的时候，就把该连接重新放到数据池中，方便下次使用调用 -->  
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">  
+   <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/> 
+   <property name="password" value="app"/>    
+   <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.1.44:1521:orcl"/>  
+   <property name="user" value="app"/>  
+<!--   <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.1.66:1521:orcl"/>  
+   <property name="user" value="admin"/>  
+   <property name="password" value="123"/>  
+    
+   <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.1.108:1521:orcl"/>  
+   <property name="user" value="app"/>  
+   <property name="password" value="123"/>  
+    <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.3.159:1521:ora10"/>  
+   <property name="user" value="app"/>  
+   <property name="password" value="app"/>    
+    <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.1.44:1521:orcl"/>  
+   <property name="user" value="app"/>  
+   <property name="password" value="app"/>  
+   <property name="jdbcUrl" value="jdbc:oracle:oci:@10.0.2.90:1521:orcl"/>  
+   <property name="jdbcUrl" value="jdbc:oracle:thin:@10.0.2.90:1521:orcl"/>  
+   <property name="user" value="app"/>  
+   <property name="password" value="app"/> --> 
+
+ <!--   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">  
+   <property name="driverClass" value="com.ibm.db2.jcc.DB2Driver"/>  
+       <property name="jdbcUrl" value="jdbc:db2://10.0.1.131:50000/SCHOOL"/>
+   <property name="user" value="db2inst1"/>  
+   <property name="password" value="123qwe"/>
+   
+   <property name="jdbcUrl" value="jdbc:db2://192.168.241.129:50000/SCHOOL"/> 
+     
+    <property name="driverClass" value="com.ibm.db2.jcc.DB2Driver"/>  
+	<property name="jdbcUrl" value="jdbc:db2://127.0.0.1:50000/SCHOOL"/> 
+	<property name="user" value="db2inst1"/>  
+	<property name="password" value="123"/>
+  -->
+ 
+ <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> -->
+  
+ <!--     <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>  
+   <property name="user" value="sa"/>  
+   <property name="password" value="admin"/>  
+    <property name="jdbcUrl" value="jdbc:sqlserver://10.0.3.104:1433; DatabaseName=school"/> 
+ -->   
+<!--   <property name="driverClass" value="com.mysql.jdbc.Driver"/>  
+   <property name="user" value="root"/>  
+   <property name="password" value=""/>  
+   <property name="jdbcUrl" value="jdbc:mysql://10.0.1.44:3308/school"/>
+ -->
+
+ 
+<!--  -->
+ <!--  <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>  
+   <property name="user" value="sa"/>  
+   <property name="password" value="yunzhihui2015"/>  
+    <property name="jdbcUrl" value="jdbc:sqlserver://10.4.2.217:1433; DatabaseName=school"/>    
+  
+     <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>  
+   <property name="user" value="sa"/>  
+   <property name="password" value="123_ABC"/>  
+    <property name="jdbcUrl" value="jdbc:sqlserver://10.0.5.190:1433; DatabaseName=school"/>       
+    
+    <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>  
+   <property name="user" value="sa"/>  
+   <property name="password" value="admin"/>  
+    <property name="jdbcUrl" value="jdbc:sqlserver://10.0.3.104:1433; DatabaseName=school"/> 
+    
+      <property name="driverClass" value="net.sourceforge.jtds.jdbc.Driver"/>  
+   <property name="user" value="sa"/>  
+   <property name="password" value="admin"/>  
+    <property name="jdbcUrl" value="jdbc:jtds:sqlserver://10.0.3.104:1433;DatabaseName=school"/>   
+    
+    <property name="driverClass" value="org.mariadb.jdbc.Driver"/>  
+   <property name="user" value="root"/>  
+   <property name="password" value="123.com"/>  
+    <property name="jdbcUrl" value="jdbc:mariadb://10.0.1.102:3306/school"/> 
+    
+    <property name="driverClass" value="org.postgresql.Driver"/>  
+    <property name="user" value="postgres"/>  
+    <property name="password" value="postgres"/>  
+    <property name="jdbcUrl" value="jdbc:postgresql://10.0.1.102:5432/postgres"/> 
+     -->
+    
+   <!-- 连接池中的最大连接数 -->  
+   <property name="maxPoolSize" value="3"/>  
+     
+   <!-- 连接池中的最小连接数 -->  
+   <property name="minPoolSize" value="1"></property>  
+     
+   <!-- 初始化连接池中的 连接数,取值 在  minPoolSize 和 maxPoolSize 之间,default:3-->  
+   <property name="initialPoolSize" value="1"/>  
+     
+   <!-- 最大空闲时间,60s内该连接没有被使用则被丢弃，若为0 永不丢弃.default:0 -->  
+   <property name="maxIdleTime" value="60"/>  
+     
+   <!-- 当连接数不够时,每次同时创建多少个连接 -->  
+   <property name="acquireIncrement" value="1"/>  
+     
+   <!-- 每60s检查连接池中的所有空间连接,如果没有被使用,就被放弃, default:0 -->  
+   <property name="idleConnectionTestPeriod" value="60"/> 
+   
+	<!-- JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements 
+ 	 	属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。 
+  		如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 --> 
+	<property name="maxStatements" value="0"></property>
+
+	<!-- maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0  --> 
+	<property name="maxStatementsPerConnection" value="0"></property>
+    
+</bean> 
+
+  <!-- 从c3p0数据源中抽取出JDBC的代理对象-->  
+<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.C3P0NativeJdbcExtractor"  lazy-init="true" />   
+  
+<!--9i： org.springframework.jdbc.support.lob.OracleLobHandler  -->  
+<!--10g以后：org.springframework.jdbc.support.lob.DefaultLobHandler(mysql,DB2等都可以用这个)  -->  
+<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true">  
+  <!-- 9i: 指定操作lob类型数据的jdbc代理对象 如果上面的 lobHandler 换了下面的就不需要了 -->  
+  <property name="nativeJdbcExtractor">  
+    <ref local="nativeJdbcExtractor" />  
+  </property>  
+</bean> 
+
+<!-- 使用jdbc 来管理事务 -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+
+<!-- 配置 mybatis 的sqlSessionFactory 由 spring 的 SqlSessionFactoryBean 代理 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="configLocation" value="classpath:mybatis-config.xml"/>
+</bean>
+
+<!-- 使用spring 的 SqlSessionTemplate 创建一个 可以批量操作的sqlSession  -->
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg index="0" ref="sqlSessionFactory"/>
+</bean>
+
+
+<!-- =============================== -->
+<!--  /////////    dao 的配置              /////-->
+<!-- =============================== -->
+<bean id="studentDAO" class="com.mybatis.student.IStudentDAOImpl">
+	<property name="sqlSession" ref="sqlSession"/>
+</bean>
+
+<!-- 使用   sqlSessionTemplate 创建的 sqlSession -->
+<bean id="studentDAO1" class="com.mybatis.student.IStudentDAOImpl_sqlSessionTemplate">
+<constructor-arg index="0" ref="sqlSessionFactory"/>
+</bean>
+
+<bean id="studentDAO2" class="com.mybatis.student.IStudentDAOImpl_sqlSessionDaoSupport">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	<!-- 或者 使用   sqlSessionTemplate  如果两个都配置了 会忽略 sqlSessionFactory -->
+</bean>
+
+<!-- 采用MapperFactoryBean  -->
+<bean id="classesDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.mybatis.classes.IClassesDAO"/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+</bean>
+
+<!-- 采用MapperFactoryBean  -->
+<bean id="amountDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.amount.yeepay.amount.IAmountDAO"/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+</bean>
+<!-- =============================== -->
+<!--  /////   Serivce 的配置                /////-->
+<!-- =============================== -->
+	<bean id="studentService" class="com.mybatis.student.IStudentServiceImpl">
+		<property name="sudentDAO" ref="studentDAO"/>
+	</bean>
+	
+	<bean id="classesService" class="com.mybatis.classes.IClassesServiceImpl">
+		<property name="classesDAO" ref="classesDAO"/>
+	</bean>
+	
+	<bean id="amountService" class="com.amount.yeepay.amount.IAmountServiceImpl">
+		<property name="iAmountDAO" ref="amountDAO"/>
+	</bean>
+	<!-- <bean id="employService" class="com.toredis.service.EmployServiceImpl">
+	</bean> -->
+</beans>   
+
+ 
+   
+    
+     
+      
+       
+        
+         
+          
+           

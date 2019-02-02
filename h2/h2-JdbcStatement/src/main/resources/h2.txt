@@ -1,0 +1,4 @@
+h2.driverClass=org.h2.Driver
+h2.jdbcUrl= jdbc:h2:tcp://localhost:9123/~/Desktop/h2/h2db
+h2.username=sa
+h2.password=sa

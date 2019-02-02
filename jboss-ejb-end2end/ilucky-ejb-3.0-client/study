@@ -1,0 +1,37 @@
+参考:
+http://blog.csdn.net/u014470581/article/details/53444056
+http://theopentutorials.com/examples/java-ee/ejb3/how-to-create-a-ejb-3-x-project-using-maven-in-eclipse-part-2/
+
+1. server安装javaagent测试
+寻找server入口。
+
+2.  client适配
+2017-8-2 18:06:17 org.jboss.ejb.client.EJBClient <clinit>
+INFO: JBoss EJB Client version 1.0.5.Final
+2017-8-2 18:06:17 org.xnio.Xnio <clinit>
+INFO: XNIO Version 3.0.3.GA
+2017-8-2 18:06:17 org.xnio.nio.NioXnio <clinit>
+INFO: XNIO NIO Implementation Version 3.0.3.GA
+2017-8-2 18:06:17 org.jboss.remoting3.EndpointImpl <clinit>
+INFO: JBoss Remoting version 3.2.3.GA
+2017-8-2 18:06:23 org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector setupEJBReceivers
+WARN: Could not register a EJB receiver for connection to remote://localhost:4447
+java.lang.RuntimeException: Operation failed with status WAITING
+	at org.jboss.ejb.client.remoting.IoFutureHelper.get(IoFutureHelper.java:93)
+	at org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector.setupEJBReceivers(ConfigBasedEJBClientContextSelector.java:121)
+	at org.jboss.ejb.client.remoting.ConfigBasedEJBClientContextSelector.<init>(ConfigBasedEJBClientContextSelector.java:78)
+	at org.jboss.ejb.client.EJBClientContext.<clinit>(EJBClientContext.java:77)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:120)
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:104)
+	at com.sun.proxy.$Proxy0.sayHello(Unknown Source)
+	at com.ilucky.ejb.Client.main(Client.java:12)
+Exception in thread "main" java.lang.IllegalStateException: No EJB receiver available for handling [appName:,modulename:ilucky-ejb-3.0-0.0.1-SNAPSHOT,distinctname:] combination for invocation context org.jboss.ejb.client.EJBClientInvocationContext@358b3364
+	at org.jboss.ejb.client.EJBClientContext.requireEJBReceiver(EJBClientContext.java:584)
+	at org.jboss.ejb.client.ReceiverInterceptor.handleInvocation(ReceiverInterceptor.java:119)
+	at org.jboss.ejb.client.EJBClientInvocationContext.sendRequest(EJBClientInvocationContext.java:181)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:136)
+	at org.jboss.ejb.client.EJBInvocationHandler.doInvoke(EJBInvocationHandler.java:121)
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:104)
+	at com.sun.proxy.$Proxy0.sayHello(Unknown Source)
+	at com.ilucky.ejb.Client.main(Client.java:12)
+

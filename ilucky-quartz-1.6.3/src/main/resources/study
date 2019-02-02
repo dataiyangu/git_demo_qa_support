@@ -1,0 +1,7 @@
+java -Xbootclasspath/p:/opt/cloudwise-20171102/JavaAgent_2.0.15/conf/ -javaagent:/opt/cloudwise-20171102/JavaAgent_2.0.15/lib/CAgent-1.0.0.jar=/opt/cloudwise-20171102/JavaAgent_2.0.15/ -jar ilucky-quartz-1.6.3.jar 
+
+
+
+java -Xbootclasspath/p:/opt/cloudwise-qa/JavaAgent_2.0.15/conf/ -javaagent:/opt/cloudwise-qa/JavaAgent_2.0.15/lib/CAgent-1.0.0.jar=/opt/cloudwise-qa/JavaAgent_2.0.15/ -jar ilucky-quartz-1.6.3.jar
+
+java -Xbootclasspath/p:/opt/cloudwise-pro/JavaAgent_2.0.15/conf/ -javaagent:/opt/cloudwise-pro/JavaAgent_2.0.15/lib/CAgent-1.0.0.jar=/opt/cloudwise-pro/JavaAgent_2.0.15/ -jar ilucky-quartz-1.6.3.jar 

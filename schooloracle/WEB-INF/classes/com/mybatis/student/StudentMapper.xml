@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mybatis.student">
+   	<!-- <!ELEMENT mapper (
+   		cache-ref | cache | resultMap* | parameterMap* | sql* 
+   		| insert* | update* | delete* | select* )+> -->
+   	
+   	<!-- 设置缓存 如果用户需要登录 需要设置这种类型 type=org.mybatis.caches.oscache.LoggingOSCache-->
+    <cache eviction="FIFO" readOnly="true" size="256" flushInterval="60000"/>
+     
+    <!-- 定义可以重用的sql 代码片段  -->
+ 	<sql id="studentColumns">sid,sname,score</sql>
+
+	<!-- 自定义结果集 --> 	
+ 	<resultMap type="Student" id="studentResultMap">
+ 		<id property="sid" column="SID"/>
+ 		<result property="sname" column="SNAME"/>
+ 		<result property="score" column="SCORE"/>
+ 	</resultMap>
+ 	
+ 	<resultMap type="Student" id="studentAllResultMap">
+ 		<id property="sid" column="SID"/>
+ 		<result property="sname" column="SNAME"/>
+ 		<result property="major" column="MAJOR"/>
+ 		<result property="birth" column="BIRTH"/>
+ 		<result property="score" column="SCORE"/>
+ 		<result property="cid" column="CID"/>
+ 		<result property="status" column="STATUS"/>
+ 	</resultMap>
+ 	
+ 	<!-- 只用构造函数 创建对象 对于那些 比较少的列 -->
+ 	<resultMap type="Student" id="studentAndClassesResultMap">
+ 		<constructor>
+ 			<idArg column="SID" javaType="int"/>
+ 			<arg column="SNAME" javaType="String"/>
+ 			<arg column="SCORE" javaType="float"/>
+ 		</constructor>
+ 		<association property="classes" javaType="Classes" resultMap="com.mybatis.classes.classesResultMap"/>
+ 	</resultMap>
+ 
+ 
+ 	<select id="selectStudentAndClassBySname" parameterType="String" resultMap="studentAndClassesResultMap">
+ 		select s.sid,s.sname,s.score,c.cid,c.cname,c.teacher,c.createdate from student s left join classes c on s.cid=c.cid where s.sname=#{sname}
+ 	</select>
+ 
+ 	<insert id="addStudentBySequence" parameterType="Student" >
+ 	<selectKey keyProperty="sid" resultType="int" order="BEFORE">
+ 		select STUDENT_SEQ.nextVal from dual
+ 	</selectKey>
+ 		insert into student(sid,sname,major,birth,score)
+    	values (#{sid},#{sname},#{major},#{birth},#{score})
+ 	</insert>
+ 	
+ 	<insert id="addStudent" parameterType="Student">
+ 		insert into student(sid,sname,major,birth,score,cid)
+ 		values (#{sid},#{sname},#{major},#{birth},#{score},#{cid})
+ 	</insert>
+ 	
+ 	<delete id="delStudentById" parameterType="int">
+ 		delete from student where sid=#{sid}
+ 	</delete>
+ 	
+ 	<select id="queryAllStudent" resultType="Student" useCache="true" flushCache="false" timeout="10000">
+ 		select * from student order by sid
+ 	</select>
+ 	
+ 	<!-- 参数可以指定一个特定的数据类型  还可以使用自定类型处理: typeHandler=MyTypeHandler -->
+ 	<select id="queryStudentByName" resultType="Student" parameterType="String">
+ 		select * from student where sname like #{property,javaType=String,jdbcType=VARCHAR}
+ 	</select>
+ 	
+ 	<!-- 参数可以指定一个特定的数据类型 对于数字类型 ,numericScale=2  用于设置小数类型  -->
+ 	<select id="queryStudentById" resultType="Student" parameterType="int">
+ 		select * from student where sid=#{property,javaType=int,jdbcType=NUMERIC}
+ 	</select>
+ 	
+ 	
+ 	<update id="updStudentById" parameterType="Student">
+ 		update student 
+ 		<trim prefix="SET" suffixOverrides=",">
+ 			<if test="sname !=null">sname=#{sname},</if>
+ 			<if test="major !=null">majoir=#{major},</if>
+ 			<if test="birth !=null">birth=#{birth},</if>
+ 			<if test="score !=null">score=#{score}</if>
+ 		</trim>
+ 		where sid=#{sid}
+ 	</update>
+ 	
+ 	<!-- 在这里 利用了 可重用的sql代码片段 -->
+ 	<select id="selectMapResult" resultMap="studentResultMap" parameterType="String">
+ 		select <include refid="studentColumns"/> from STUDENT where sname like #{sname}
+ 	</select>	
+ 	
+ 	<!-- Dynamic  Sql 使用  if -->
+ 	<select id="selectStudentByDynamicSql" parameterType="Student" resultType="Student">
+ 		select * from student 
+ 		<where>
+	 		<if test="sname !=null">
+	 			sname like #{sname}
+	 		</if>
+	 		<if test="sid !=null">
+	 			AND sid=#{sid}
+	 		</if>
+ 		</where>
+ 	</select>
+ 	
+ 	<!-- 采用 OGNL 表达式  来配置动态sql 使用trim 去掉 where 中多余的  and 或者 or  where  choose  when otherwise-->
+ 	<select id="selectStudentByDynamicSqlChoose" parameterType="Student" resultType="Student">
+ 		select * from student 
+ 		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+ 			<choose>
+ 				<when test=" sname !=null and sname.length() >0 "> 
+ 					sname like #{sname}
+ 				</when>
+ 				<when test="sid !=null and sid>0">
+ 					AND sid = #{sid}
+ 				</when>
+ 				<otherwise>
+ 					AND status='1'
+ 				</otherwise>
+ 			</choose>
+ 		</trim>
+ 	</select>
+ 	
+ 	<!-- 使用foreach 遍历list  只能小写-->
+ 	<select id="selectStudentByIds" resultType="Student">
+ 		select * from student 
+ 		where sid in
+ 		<foreach collection="list" item="itm" index="index" open="(" separator="," close=")">
+ 			#{itm}
+ 		</foreach>
+ 	</select>
+ 	
+ 	<!-- 使用foreach 遍历arry 只能小写 -->
+ 	<select id="selectStudentByIdArray" resultType="Student">
+ 		select * from student 
+ 		where sid in
+ 		<foreach collection="array" item="itm" index="index" open="(" separator="," close=")">
+ 			#{itm}
+ 		</foreach>
+ 	</select>
+ 	
+ 	<parameterMap type="map" id="procedureParam">
+ 		<parameter property="sid" javaType="int" jdbcType="NUMERIC" mode="IN" />
+ 		<parameter property="sname" javaType="String" jdbcType="VARCHAR" mode="IN" />
+ 		<parameter property="studentList" javaType="ResultSet" jdbcType="CURSOR" mode="OUT" resultMap="studentAllResultMap"/> 
+ 	</parameterMap>
+ 	<!--传入map集合参数 ,调用  待用游标存储过程(先执行 修改后然后查询所有)  -->
+ 	<select id="getAllStudentAfterupdate" statementType="CALLABLE" useCache="false" parameterMap="procedureParam">
+ 		{call SCHOOL.pro_getallstudent(?,?,?)}
+ 	</select>
+ 	
+ </mapper>

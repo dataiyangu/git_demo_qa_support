@@ -1,0 +1,4 @@
+http://archive.apache.org/dist/thrift/0.9.0/
+
+http://localhost:8080/ilucky-thrift-0.9.0-client/client  普通
+http://localhost:8080/ilucky-thrift-0.9.0-client/client2 访问数据库

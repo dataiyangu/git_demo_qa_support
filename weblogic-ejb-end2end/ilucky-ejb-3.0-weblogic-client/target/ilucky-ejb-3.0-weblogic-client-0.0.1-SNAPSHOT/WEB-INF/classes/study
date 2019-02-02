@@ -1,0 +1,147 @@
+
+参考url: 
+http://blog.csdn.net/sunxing007/article/details/5871382
+http://dead-knight.iteye.com/blog/1946912
+
+private RJVM findOrCreateRemoteServer(InetAddress paramInetAddress, int paramInt1, String paramString, int paramInt2)
+
+http://10.0.2.90:7001/ilucky-ejb-3.0-weblogic-client-0.0.1-SNAPSHOT/test
+-------------------------------------client error-----------------------------------------------------------
+javax.naming.CommunicationException [Root exception is java.net.ConnectException: t3://10.0.2.90:7001: Destination unreachable; nested exception is: 
+	java.net.ConnectException: Connection refused: connect; No available router to destination]
+	at weblogic.jndi.internal.ExceptionTranslator.toNamingException(ExceptionTranslator.java:40)
+	at weblogic.jndi.WLInitialContextFactoryDelegate.toNamingException(WLInitialContextFactoryDelegate.java:792)
+	at weblogic.jndi.WLInitialContextFactoryDelegate.getInitialContext(WLInitialContextFactoryDelegate.java:368)
+	at weblogic.jndi.Environment.getContext(Environment.java:315)
+	at weblogic.jndi.Environment.getContext(Environment.java:285)
+	at weblogic.jndi.WLInitialContextFactory.getInitialContext(WLInitialContextFactory.java:117)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:667)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:288)
+	at javax.naming.InitialContext.init(InitialContext.java:223)
+	at javax.naming.InitialContext.<init>(InitialContext.java:197)
+	at com.ilucky.ejb.EJBDemoTest.main(EJBDemoTest.java:23)
+Caused by: java.net.ConnectException: t3://10.0.2.90:7001: Destination unreachable; nested exception is: 
+	java.net.ConnectException: Connection refused: connect; No available router to destination
+	at weblogic.rjvm.RJVMFinder.findOrCreateInternal(RJVMFinder.java:216)
+	at weblogic.rjvm.RJVMFinder.findOrCreate(RJVMFinder.java:170)
+	at weblogic.rjvm.ServerURL.findOrCreateRJVM(ServerURL.java:165)
+	at weblogic.jndi.WLInitialContextFactoryDelegate.getInitialContext(WLInitialContextFactoryDelegate.java:353)
+	... 8 more
+Caused by: java.rmi.ConnectException: Destination unreachable; nested exception is: 
+	java.net.ConnectException: Connection refused: connect; No available router to destination
+	at weblogic.rjvm.ConnectionManager.bootstrap(ConnectionManager.java:470)
+	at weblogic.rjvm.ConnectionManager.bootstrap(ConnectionManager.java:321)
+	at weblogic.rjvm.RJVMManager.findOrCreateRemoteInternal(RJVMManager.java:260)
+	at weblogic.rjvm.RJVMManager.findOrCreate(RJVMManager.java:197)
+	at weblogic.rjvm.RJVMFinder.findOrCreateRemoteServer(RJVMFinder.java:238)
+	at weblogic.rjvm.RJVMFinder.findOrCreateInternal(RJVMFinder.java:200)
+	... 11 more
+	-------------------------------------
+	javax.ejb.EJBException: EJB Exception: ; nested exception is: 
+	java.lang.ArithmeticException: / by zero; nested exception is: java.lang.ArithmeticException: / by zero
+java.lang.ArithmeticException: / by zero
+	at com.ilucky.ejb.EJBSessBean.sayHi(EJBSessBean.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.bea.core.repackaged.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.oracle.pitchfork.spi.MethodInvocationVisitorImpl.visit(MethodInvocationVisitorImpl.java:34)
+	at weblogic.ejb.container.injection.EnvironmentInterceptorCallbackImpl.callback(EnvironmentInterceptorCallbackImpl.java:54)
+	at com.oracle.pitchfork.spi.EnvironmentInterceptor.invoke(EnvironmentInterceptor.java:42)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:89)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+	at $Proxy104.sayHi(Unknown Source)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl.__WL_invoke(Unknown Source)
+	at weblogic.ejb.container.internal.SessionRemoteMethodInvoker.invoke(SessionRemoteMethodInvoker.java:40)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl.sayHi(Unknown Source)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl_WLSkel.invoke(Unknown Source)
+	at weblogic.rmi.internal.BasicServerRef.invoke(BasicServerRef.java:667)
+	at weblogic.rmi.cluster.ClusterableServerRef.invoke(ClusterableServerRef.java:230)
+	at weblogic.rmi.internal.BasicServerRef$1.run(BasicServerRef.java:522)
+	at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:363)
+	at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:146)
+	at weblogic.rmi.internal.BasicServerRef.handleRequest(BasicServerRef.java:518)
+	at weblogic.rmi.internal.wls.WLSExecuteRequest.run(WLSExecuteRequest.java:118)
+	at weblogic.work.ExecuteThread.execute(ExecuteThread.java:256)
+	at weblogic.work.ExecuteThread.run(ExecuteThread.java:221)
+javax.ejb.EJBException: EJB Exception: ; nested exception is: 
+	java.lang.ArithmeticException: / by zero; nested exception is: java.lang.ArithmeticException: / by zero
+	at weblogic.ejb.container.internal.RemoteBusinessIntfProxy.unwrapRemoteException(RemoteBusinessIntfProxy.java:121)
+	at weblogic.ejb.container.internal.RemoteBusinessIntfProxy.invoke(RemoteBusinessIntfProxy.java:96)
+	at com.sun.proxy.$Proxy0.sayHi(Unknown Source)
+	at com.ilucky.ejb.EJBDemoTest.main(EJBDemoTest.java:25)
+Caused by: java.lang.ArithmeticException: / by zero
+	at com.ilucky.ejb.EJBSessBean.sayHi(EJBSessBean.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at com.bea.core.repackaged.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.oracle.pitchfork.spi.MethodInvocationVisitorImpl.visit(MethodInvocationVisitorImpl.java:34)
+	at weblogic.ejb.container.injection.EnvironmentInterceptorCallbackImpl.callback(EnvironmentInterceptorCallbackImpl.java:54)
+	at com.oracle.pitchfork.spi.EnvironmentInterceptor.invoke(EnvironmentInterceptor.java:42)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:89)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:131)
+	at com.bea.core.repackaged.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:119)
+	at com.bea.core.repackaged.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+	at com.bea.core.repackaged.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+	at $Proxy104.sayHi(Unknown Source)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl.__WL_invoke(Unknown Source)
+	at weblogic.ejb.container.internal.SessionRemoteMethodInvoker.invoke(SessionRemoteMethodInvoker.java:40)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl.sayHi(Unknown Source)
+	at com.ilucky.ejb.EJBSessBean_ma0p5s_EJBDemoIntfImpl_WLSkel.invoke(Unknown Source)
+	at weblogic.rmi.internal.BasicServerRef.invoke(BasicServerRef.java:667)
+	at weblogic.rmi.cluster.ClusterableServerRef.invoke(ClusterableServerRef.java:230)
+	at weblogic.rmi.internal.BasicServerRef$1.run(BasicServerRef.java:522)
+	at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:363)
+	at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:146)
+	at weblogic.rmi.internal.BasicServerRef.handleRequest(BasicServerRef.java:518)
+	at weblogic.rmi.internal.wls.WLSExecuteRequest.run(WLSExecuteRequest.java:118)
+	at weblogic.work.ExecuteThread.execute(ExecuteThread.java:256)
+	at weblogic.work.ExecuteThread.run(ExecuteThread.java:221)
+=====================
+	1. client入口:
+	at weblogic.rmi.internal.BasicServerRef.invoke(BasicServerRef.java:667)
+	at weblogic.rmi.internal.BasicServerRef.handleRequest(BasicServerRef.java:518)
+	at weblogic.ejb.container.internal.SessionRemoteMethodInvoker.invoke(SessionRemoteMethodInvoker.java:40)
+	2. server入口:
+	
+	--------------------------------------------分析--------------------
+	public class Stub implements Serializable, weblogic.rmi.extensions.server.Stub
+	public abstract class Skeleton
+	
+	package weblogic.corba.iiop.http;
+ 	public static String acceptConnection(HttpServletRequest paramHttpServletRequest, int paramInt, HttpServletResponse paramHttpServletResponse)
+ 	package weblogic.corba.iiop.http;
+ 	public void service(HttpServletRequest paramHttpServletRequest, HttpServletResponse paramHttpServletResponse)throws IOException
+ 	
+ 	public abstract interface BusinessObject extends Remote
+ 	public final class BusinessHandleImpl
+ 	
+ 	
+ 	
+ 	public abstract class StatelessRemoteObject extends BaseRemoteObject
+ 	protected BusinessHandle _WL_getBusinessObjectHandle(MethodDescriptor paramMethodDescriptor) throws RemoteException
+ 	public abstract class StatefulRemoteObject extends BaseRemoteObject
+ 	protected BusinessHandle _WL_getBusinessObjectHandle(MethodDescriptor paramMethodDescriptor) throws RemoteException
+ 	
+ 	public abstract interface BusinessObject extends Remote
+   public abstract BusinessHandle _WL_getBusinessObjectHandle()

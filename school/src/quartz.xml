@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+        default-lazy-init="false">
+
+
+     <!-- task -->
+    <!-- 定义了一个任务JobDetail -->
+    <bean id="quartzLine" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checkLine" />
+   <!--      <property name="group" value="test" />  -->
+    </bean>
+    
+    <bean id="quartzClient" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checkClient" />
+    </bean>
+    
+    <bean id="quartzSql" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checksql" />
+    </bean>
+    
+     <bean id="quartzFouth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checkfouth" />
+    </bean>
+    
+     <bean id="quartzFifth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checkfifth" />
+    </bean>
+    
+     <bean id="quartzSixth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoReconciliation" />
+         <property name="targetMethod" value="checksixth" />
+    </bean>
+    
+
+    <!-- 第二步 调度定时任务 的触发器-->
+    <!-- 这种配置可以精确几点执行定时任务 -->
+    <bean id="cronQuartzLine" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzLine"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/20 * * * * ?</value>
+        </property>
+    </bean>
+    
+    <bean id="cronQuartzClient" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzClient"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/20 * * * * ?</value>
+        </property>
+     <!--<property name="cronExpression" value="*/1 * * * * ?"/> 每隔1秒钟触发一次 -->  
+    </bean>
+    
+     <bean id="cronQuartzSql" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzSql"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/10 * * * * ?</value>
+        </property>
+    </bean>
+    
+    <bean id="cronQuartzFouth" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzFouth"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/20 * * * * ?</value>
+        </property>
+    </bean>
+    
+    <bean id="cronQuartzFifth" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzFifth"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/20 * * * * ?</value>
+        </property>
+    </bean>
+    
+    <bean id="cronQuartzSixth" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="quartzSixth"></ref>
+        </property>
+        <property name="cronExpression">
+            <value>*/20 * * * * ?</value>
+        </property>
+    </bean>
+    
+
+    <!--第三步 启动定时任务的调度器,注意这里的 ref bean -->
+    <bean id="schedulerFactoryBean" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+	            <ref bean="cronQuartzSql"></ref>
+                <ref bean="cronQuartzLine"></ref>
+                 <ref bean="cronQuartzFouth"></ref>
+                <ref bean="cronQuartzFifth"></ref>
+            <!--	<ref bean="cronQuartzSql"></ref>
+                <ref bean="cronQuartzClient"></ref>
+                <ref bean="cronQuartzLine"></ref>
+                <ref bean="cronQuartzSql"></ref>
+                <ref bean="cronQuartzFouth"></ref>
+                <ref bean="cronQuartzFifth"></ref>
+                <ref bean="cronQuartzSixth"></ref> -->
+            </list>
+        </property>
+         <!--  <property name="configLocation" value="classpath:quartz.properties"/>-->
+    </bean>
+
+   <!--这个地方你作业的实现    -->
+    <bean id="autoReconciliation" class="com.quartzjob.simple.TestQuartzJob" />
+</beans>
