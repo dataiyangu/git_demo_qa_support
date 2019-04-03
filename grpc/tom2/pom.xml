@@ -103,7 +103,7 @@
                 <version>2.2</version>
                 <configuration>
                     <!-- 指定web.xml的路径  -->
-                    <webXml>web\WEB-INF\web.xml</webXml>
+                    <webXml>web/WEB-INF/web.xml</webXml>
                     <!-- 指定jsp、js、css的路劲 -->
                     <warSourceDirectory>WebRoot</warSourceDirectory>
                 </configuration>
