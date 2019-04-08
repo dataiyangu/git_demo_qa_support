@@ -1,6 +1,6 @@
 jdbc.drivers=org.apache.derby.jdbc.ClientDriver
 #因为derby驱动程序将自动注册驱动类
-jdbc.url=jdbc:derby://10.0.4.89:1527/new
+jdbc.url=jdbc:derby://10.0.4.46:1527/new
 jdbc.username=root
 #可以不使用用户名和密码，默认是APP用户，因为如果使用了如此的设置在第二次创建时（第一次中途失败）会出现 #org.apache.derby.client.am.SqlException: Schema“DBUSER4”中已经存在Table/View“GREETINGS”的异常，便于方便，所以在此注释掉了。
 jdbc.password=root

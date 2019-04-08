@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="derby_demo" />
+        <module name="derby" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="derby (1)" target="1.7" />
+      <module name="derby (2)" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

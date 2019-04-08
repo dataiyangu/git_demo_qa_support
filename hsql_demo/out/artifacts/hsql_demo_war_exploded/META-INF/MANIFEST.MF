@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: leesin
+Class-Path: /Users/leesin/intellij-idea-workspace/hsql_demo/src/lib/hs
+ qldb.jar lib/javax.servlet-api-3.1.0.jar lib/hsqldb-j5-2.2.4.jar
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_181
+Main-Class: com.hlsq.HsqlDemo
+

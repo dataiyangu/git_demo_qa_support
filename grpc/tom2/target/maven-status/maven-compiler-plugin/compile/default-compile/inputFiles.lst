@@ -1,8 +1,8 @@
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloReplyOrBuilder.java
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloReply.java
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloRequestOrBuilder.java
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloRequest.java
-/Users/leesin/intellij-idea-workspace/tom2/src/main/java/S.java
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloWorldProto.java
-/Users/leesin/intellij-idea-workspace/tom2/src/main/java/GrpcClient.java
-/Users/leesin/intellij-idea-workspace/tom2/target/generated-sources/protobuf/grpc-java/io/grpc/examples/helloworld/GreeterGrpc.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloReplyOrBuilder.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloRequestOrBuilder.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloWorldProto.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloRequest.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/java/io/grpc/examples/helloworld/HelloReply.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/src/main/java/S.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/target/generated-sources/protobuf/grpc-java/io/grpc/examples/helloworld/GreeterGrpc.java
+/Users/leesin/Desktop/qa_demo/git_demo_qa_support/grpc/tom2/src/main/java/GrpcClient.java

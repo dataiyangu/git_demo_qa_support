@@ -54,7 +54,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <webXml>web\WEB-INF\web.xml</webXml>
+          <webXml>web/WEB-INF/web.xml</webXml>
           <warSourceDirectory>WebRoot</warSourceDirectory>
         </configuration>
       </plugin>
