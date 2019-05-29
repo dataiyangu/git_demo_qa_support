@@ -28,7 +28,37 @@
 	<mvc:resources mapping="/images/**" location="/images/" />
  -->
 
-
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 指定连接数据库的JDBC驱动 -->
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<!-- 指定数据库所用的url-->
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/bookshop">
+		</property>
+		<!-- 指定连接数据库的用户名 -->
+		<property name="username" value="root"></property>
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="1234"></property>
+	</bean>
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 将上面定义的数据源dataSource注入到LocalSessionFactoryBean类的sessionFactory属性  -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 设置Hibernate的相关属性 -->
+		<property name="hibernateProperties">
+			<props>
+			    <!-- 设置Hibernate的数据库方言 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="UserDAOImpl" class="com.cloudwise.test.UserDAOImpl">	</bean>
 
 
 	<bean

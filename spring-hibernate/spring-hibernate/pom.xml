@@ -72,11 +72,25 @@
 
 		<!--hibernate  ***************************************************-->
 
+		<!--<dependency>-->
+			<!--<groupId>hibernate</groupId>-->
+			<!--<artifactId>hibernate</artifactId>-->
+			<!--<version>3.3.2</version>-->
+		<!--</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate -->
 		<dependency>
-			<groupId>hibernate</groupId>
+			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
-			<version>3.0.1</version>
+			<version>3.3.2.GA</version>
+			<type>pom</type>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.2.GA</version>
+		</dependency>
+
 		<!--mysql  ***************************************************-->
 		<dependency>
             <groupId>mysql</groupId>

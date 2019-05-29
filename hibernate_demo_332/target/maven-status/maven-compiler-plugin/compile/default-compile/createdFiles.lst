@@ -1,0 +1,5 @@
+com/test/service/UserService.class
+com/test/dao/UserDAO.class
+com/test/controller/UserController.class
+com/test/test/Test.class
+com/test/entity/User.class

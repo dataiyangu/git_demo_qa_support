@@ -10,7 +10,6 @@ import com.ilucky.thrift.util.DbUtil;
 
 public class HelloWorldImpl implements HelloWorldService.Iface {
 	
-	@Override
 	public String sayHello(String username) throws TException {
 		// 这里可以操作一下数据库，服务端就抓到了! 抛出异常！
 		System.out.println("====HI====="+username);

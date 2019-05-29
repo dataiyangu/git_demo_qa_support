@@ -38,5 +38,8 @@ public class TestServlet extends HttpServlet {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+
+		System.out.println("aaaa");
 	}
 }
