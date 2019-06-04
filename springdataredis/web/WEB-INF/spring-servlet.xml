@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/cache
+            http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+<context:property-placeholder location="classpath*:properties/*.properties" />
+    <!-- 配置扫描的包 -->
+    <context:component-scan base-package="com" />
+<!-- redis 相关配置 -->
+<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+    <property name="maxIdle" value="${redis.maxIdle}" />   <!-- 最大空闲数 -->
+    <property name="maxWaitMillis" value="${redis.maxWait}" />  <!-- 连接时的最大等待毫秒数 -->
+    <property name="testOnBorrow" value="${redis.testOnBorrow}" />  <!-- 在提取一个 jedis 实例时，是否提前进行验证操作；如果为 true，则得到的 jedis
+实例均是可用的； -->
+</bean>
+
+<!-- jedis链接工厂类 -->
+<bean id="JedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+      p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:pool-config-ref="poolConfig"/>
+
+<!-- redis操作模版 -->
+<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+    <property name="connectionFactory" ref="JedisConnectionFactory" />
+</bean>
+
+
+    <!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
+    <mvc:annotation-driven />
+
+    <!-- 访问静态资源 -->
+    <mvc:default-servlet-handler />
+
+    <!-- 视图解析器 -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+
+
+
+</beans>
+
+
+
+
+
+
+          <!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"-->
+       <!--xmlns:context="http://www.springframework.org/schema/context"-->
+       <!--xmlns:mvc="http://www.springframework.org/schema/mvc"-->
+       <!--xmlns:cache="http://www.springframework.org/schema/cache"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+            <!--http://www.springframework.org/schema/beans/spring-beans.xsd-->
+            <!--http://www.springframework.org/schema/context-->
+            <!--http://www.springframework.org/schema/context/spring-context.xsd-->
+            <!--http://www.springframework.org/schema/mvc-->
+            <!--http://www.springframework.org/schema/mvc/spring-mvc.xsd-->
+            <!--http://www.springframework.org/schema/cache-->
+            <!--http://www.springframework.org/schema/cache/spring-cache.xsd">-->
+
+<!--&lt;!&ndash; 配置扫描的包 &ndash;&gt;-->
+<!--<context:component-scan base-package="com" />-->
+
+
+
+<!--&lt;!&ndash; redis 相关配置 &ndash;&gt;-->
+<!--<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
+    <!--<property name="maxIdle" value="${redis.maxIdle}" />   &lt;!&ndash; 最大空闲数 &ndash;&gt;-->
+    <!--<property name="maxWaitMillis" value="${redis.maxWait}" />  &lt;!&ndash; 连接时的最大等待毫秒数 &ndash;&gt;-->
+    <!--<property name="testOnBorrow" value="${redis.testOnBorrow}" />  &lt;!&ndash; 在提取一个 jedis 实例时，是否提前进行验证操作；如果为 true，则得到的 jedis-->
+<!--实例均是可用的； &ndash;&gt;-->
+<!--</bean>-->
+
+<!--&lt;!&ndash; jedis链接工厂类 &ndash;&gt;-->
+<!--<bean id="JedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"-->
+      <!--p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:pool-config-ref="poolConfig"/>-->
+
+<!--&lt;!&ndash; redis操作模版 &ndash;&gt;-->
+<!--<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">-->
+    <!--<property name="connectionFactory" ref="JedisConnectionFactory" />-->
+<!--</bean>-->
+<!--</beans>-->
+

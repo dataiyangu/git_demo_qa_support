@@ -1,0 +1,11 @@
+
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(η£Ότϊÿÿÿÿ8Μ΅ƒ²-
+hsquid:UselessImportCheck"?Remove this unused import 'redis.clients.jedis.JedisShardInfo'.(°ωϋψ8‹β„²-
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(€€ηΨ8Μ΅ƒ²-
+Vsquid:S1854"5Remove this useless assignment to local variable "t".(“®µθώÿÿÿÿ8λ³’ƒ²-
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(•¦C8Μ΅ƒ²-
+Gsquid:S1481"&Remove this unused "t" local variable.(“®µθώÿÿÿÿ8λ³’ƒ²-
+dsquid:UselessImportCheck"6Remove this unused import 'redis.clients.jedis.Jedis'.(ϊΕύÿÿÿÿ8‹β„²-
