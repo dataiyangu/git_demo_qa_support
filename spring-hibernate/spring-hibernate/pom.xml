@@ -9,7 +9,7 @@
 	<name>spring-hibernate-test Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring-version>1.2</spring-version>
+		<spring-version>5.2.7.RELEASE</spring-version>
 		<hibernate-version></hibernate-version>
 	</properties>
 	<dependencies>
